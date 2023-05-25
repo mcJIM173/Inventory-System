@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/User/OneDrive/桌面/DBMS_Projects/inventoryDB.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="150"/><column_width id="3" width="2405"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,18:mainMATERIAL_INVENTORY"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="BOM" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="40"/><column index="2" value="60"/><column index="3" value="44"/><column index="4" value="40"/><column index="5" value="115"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="MATERIAL_INVENTORY" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="56"/><column index="2" value="57"/><column index="3" value="146"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PRODUCT" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="78"/><column index="2" value="60"/><column index="3" value="131"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="PRODUCT_INVENTORY" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="57"/><column index="3" value="142"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 7">SELECT SUM(M_CURRENT_STOCK) TOTAL
+FROM MATERIAL_INVENTORY
+WHERE WNUM = &quot;WH04&quot;</sql><sql name="SQL 8">SELECT SUM(P_CURRENT_STOCK) total
+FROM PRODUCT_INVENTORY
+WHERE WNUM = &quot;WH04&quot;</sql><sql name="SQL 14">SELECT SUM(TOTAL_INVENTORY)
+FROM (
+		SELECT SUM(M_CURRENT_STOCK) TOTAL_INVENTORY FROM MATERIAL_INVENTORY WHERE WNUM = &quot;WH04&quot;
+		UNION ALL
+		SELECT SUM(P_CURRENT_STOCK) TOTAL_INVENTORY FROM PRODUCT_INVENTORY WHERE WNUM = &quot;WH04&quot;
+)</sql><sql name="SQL 15">SELECT SUM(M_CURRENT_STOCK) TOTAL_INVENTORY FROM MATERIAL_INVENTORY WHERE WNUM = &quot;WH04&quot;
+UNION ALL
+SELECT SUM(P_CURRENT_STOCK) TOTAL_INVENTORY FROM PRODUCT_INVENTORY WHERE WNUM = &quot;WH04&quot;</sql><sql name="SQL 16">SELECT SUM(M_CURRENT_STOCK) TOTAL_INVENTORY FROM MATERIAL_INVENTORY WHERE WNUM = &quot;WH04&quot;</sql><sql name="SQL 17">SELECT AVG(P_CURRENT_STOCK)
+FROM PRODUCT_INVENTORY</sql><sql name="SQL 18">SELECT WNUMBER, WLOCATION, MGRSSN
+FROM WAREHOUSE AS W, PRODUCT_INVENTORY AS P
+WHERE W.WNUMBER = P.WNUM
+GROUP BY P.WNUM
+HAVING COUNT(*)&gt;2</sql><sql name="SQL 19">SELECT WNUMBER, WLOCATION, MGRSSN
+FROM WAREHOUSE AS W, PRODUCT_INVENTORY AS P
+WHERE W.WNUMBER = P.WNUM
+GROUP BY P.WNUM</sql><current_tab id="6"/></tab_sql></sqlb_project>
